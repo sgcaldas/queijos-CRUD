@@ -1,21 +1,20 @@
-import { Component } from '@angular/core';
+import { CheesesService } from './../services/cheeses.service';
+import { Component, OnInit } from '@angular/core';
 import { Cheese } from '../model/cheese';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-cheeses',
   templateUrl: './cheeses.component.html',
-  styleUrl: './cheeses.component.scss'
+  styleUrls: ['./cheeses.component.scss']
 })
-export class CheesesComponent {
+export class CheesesComponent implements OnInit{
 
-  cheeses: Cheese[] = [
-    {_id: "1", name: "Emmental", category: "Meia-Cura"}
-  ];
-
+  cheeses$: Observable<Cheese[]>;
   readonly displayedColumns = ['name', 'category'];
 
-  constructor() {
-
+  constructor(private CheesesService: CheesesService) {
+    this.cheeses$ = this.CheesesService.list();
   }
 
   ngOnInit(): void { }

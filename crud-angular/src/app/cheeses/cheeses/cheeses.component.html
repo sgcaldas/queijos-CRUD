@@ -1,42 +1,56 @@
-<mat-table [dataSource]="cheeses" class="mat-elevation-z8">
+<mat-card appearance="outlined">
+  <mat-card-content>
+    <mat-toolbar color="primary">Queijos Disponíveis</mat-toolbar>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef>Queijo</mat-header-cell>
-    <mat-cell *matCellDef="let cheese">{{ cheese.name }}</mat-cell>
-  </ng-container>
+    <div *ngIf="cheeses$ | async as cheeses; else loading">
+      <mat-table [dataSource]="cheeses" class="mat-elevation-z8">
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef>Queijo</mat-header-cell>
+          <mat-cell *matCellDef="let cheese">{{ cheese.name }}</mat-cell>
+        </ng-container>
 
-  <!-- Category Column -->
-  <ng-container matColumnDef="category">
-    <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
-    <mat-cell *matCellDef="let cheese">{{ cheese.category }}
-      <!-- <mat-icon
-        aria-hidden="false"
-        aria-label="Categoria do queijo"
-        fontIcon="{{ cheese.category | category }}"
-      ></mat-icon> -->
-    </mat-cell>
-  </ng-container>
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+          <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
+          <mat-cell *matCellDef="let cheese"
+            >{{ cheese.category }}
+            <!-- <mat-icon
+            aria-hidden="false"
+            aria-label="Categoria do queijo"
+            fontIcon="{{ cheese.category | category }}"
+          ></mat-icon> -->
+          </mat-cell>
+        </ng-container>
 
-  <!-- Actions Column -->
-  <ng-container matColumnDef="actions">
-    <mat-header-cell *matHeaderCellDef class="action-column">
-      <button mat-icon-button aria-label="Adicionar um queijo">
-        <!-- <mat-icon (click)="onAdd()">add</mat-icon> -->
-      </button>
-    </mat-header-cell>
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef class="action-column">
+            <button mat-icon-button aria-label="Adicionar um queijo">
+              <!-- <mat-icon (click)="onAdd()">add</mat-icon> -->
+            </button>
+          </mat-header-cell>
 
-    <mat-cell *matCellDef="let cheese" class="action-column">
-      <button mat-icon-button aria-label="Editar um queijo">
-        <!-- <mat-icon (click)="onEdit(cheese)">edit</mat-icon> -->
-      </button>
+          <mat-cell *matCellDef="let cheese" class="action-column">
+            <button mat-icon-button aria-label="Editar um queijo">
+              <!-- <mat-icon (click)="onEdit(cheese)">edit</mat-icon> -->
+            </button>
 
-      <button mat-icon-button color="warn" aria-label="Remover queijo">
-        <!-- <mat-icon (click)="onDelete(cheese)">delete</mat-icon> -->
-      </button>
-    </mat-cell>
-  </ng-container>
+            <button mat-icon-button color="warn" aria-label="Remover queijo">
+              <!-- <mat-icon (click)="onDelete(cheese)">delete</mat-icon> -->
+            </button>
+          </mat-cell>
+        </ng-container>
 
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </mat-table>
+    </div>
+
+    <ng-template #loading>
+      <div class="loading-spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </ng-template>
+  </mat-card-content>
+</mat-card>

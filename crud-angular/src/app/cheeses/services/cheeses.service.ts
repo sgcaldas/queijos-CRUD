@@ -2,24 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Cheese } from '../model/cheese';
-import { delay, first, map, tap } from 'rxjs/operators';
+import { delay, first, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class CheesesService {
-
   private readonly API = 'api/cheeses';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   list() {
-    return this.httpClient.get<Cheese>(this.API)
-      .pipe(
-        first(),
-        delay(1000),
-      );
+    return this.httpClient.get<Cheese[]>(this.API)
+    .pipe(first(), delay(1000));
   }
 
   loadById(id: string) {
@@ -41,7 +37,9 @@ export class CheesesService {
   }
 
   private update(record: Partial<Cheese>) {
-    return this.httpClient.put<Cheese>(`${this.API}/${record._id}`, record).pipe(first());
+    return this.httpClient
+      .put<Cheese>(`${this.API}/${record._id}`, record)
+      .pipe(first());
   }
 
   remove(id: string) {
