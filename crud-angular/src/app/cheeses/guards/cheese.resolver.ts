@@ -6,8 +6,8 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
-import { Cheese } from '../model/cheese';
 import { CheesesService } from '../services/cheeses.service';
+import { Cheese } from '../model/cheese';
 
 @Injectable({
   providedIn: 'root',
