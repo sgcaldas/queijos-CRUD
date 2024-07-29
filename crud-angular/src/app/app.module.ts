@@ -1,5 +1,5 @@
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,13 +9,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [provideAnimationsAsync(), provideHttpClient()],
   bootstrap: [AppComponent],
 })

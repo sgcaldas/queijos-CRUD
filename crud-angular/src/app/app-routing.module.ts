@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CheesesComponent } from './cheeses/cheeses/cheeses.component';
+//import { CheesesComponent } from './cheeses/cheeses/cheeses.component';
 //import { CheeseResolver } from './cheeses/guards/cheese.resolver';
 //import { CheeseFormComponent } from './cheeses/containers/cheese-form/cheese-form.component';
 
