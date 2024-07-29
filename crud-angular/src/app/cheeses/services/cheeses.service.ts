@@ -14,8 +14,7 @@ export class CheesesService {
   constructor(private httpClient: HttpClient) {}
 
   list() {
-    return this.httpClient.get<Cheese[]>(this.API)
-    .pipe(first(), delay(1000));
+    return this.httpClient.get<Cheese[]>(this.API).pipe(first(), delay(1000));
   }
 
   loadById(id: string) {
