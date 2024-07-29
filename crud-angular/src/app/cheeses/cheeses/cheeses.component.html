@@ -13,13 +13,12 @@
         <!-- Category Column -->
         <ng-container matColumnDef="category">
           <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
-          <mat-cell *matCellDef="let cheese"
-            >{{ cheese.category }}
-            <!-- <mat-icon
+          <mat-cell *matCellDef="let cheese">{{ cheese.category }}
+          <mat-icon
             aria-hidden="false"
-            aria-label="Categoria do queijo"
+            aria-label="Categoria do Queijo"
             fontIcon="{{ cheese.category | category }}"
-          ></mat-icon> -->
+          ></mat-icon>
           </mat-cell>
         </ng-container>
 

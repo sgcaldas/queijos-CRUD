@@ -6,12 +6,8 @@ import { Component, Inject, OnInit } from '@angular/core';
   templateUrl: './error-dialog.component.html',
   styleUrl: './error-dialog.component.scss',
 })
-
 export class ErrorDialogComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: string) {}
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: string) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
