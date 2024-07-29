@@ -1,34 +1,34 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Cheese } from '../../model/cheese';
+// import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+// import { Cheese } from '../../model/cheese';
 
-@Component({
-    selector: 'app-cheeses-list',
-    templateUrl: './cheeses-list.component.html',
-    styleUrls: ['./cheeses-list.component.scss'],
-})
-export class CheesesListComponent implements OnInit {
+// @Component({
+//     selector: 'app-cheeses-list',
+//     templateUrl: './cheeses-list.component.html',
+//     styleUrls: ['./cheeses-list.component.scss'],
+// })
+// export class CheesesListComponent implements OnInit {
 
-  @Input() cheeses: Cheese[] = [];
-  @Output() add = new EventEmitter(false);
-  @Output() edit = new EventEmitter(false);
-  @Output() remove = new EventEmitter(false);
+//   @Input() cheeses: Cheese[] = [];
+//   @Output() add = new EventEmitter(false);
+//   @Output() edit = new EventEmitter(false);
+//   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['name', 'category', 'actions'];
+//   readonly displayedColumns = ['name', 'category', 'actions'];
 
-  constructor() { }
+//   constructor() { }
 
-  ngOnInit(): void { }
+//   ngOnInit(): void { }
 
-  onAdd() {
-    this.add.emit(true);
-  }
+//   onAdd() {
+//     this.add.emit(true);
+//   }
 
-  onEdit(cheese: Cheese) {
-    this.edit.emit(cheese);
-  }
+//   onEdit(cheese: Cheese) {
+//     this.edit.emit(cheese);
+//   }
 
-  onDelete(cheese: Cheese) {
-    this.remove.emit(cheese);
-  }
+//   onDelete(cheese: Cheese) {
+//     this.remove.emit(cheese);
+//   }
 
-}
+// }

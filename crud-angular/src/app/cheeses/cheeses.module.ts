@@ -1,3 +1,4 @@
+import { MatTableModule } from '@angular/material/table';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -6,6 +7,6 @@ import { CheesesComponent } from './cheeses/cheeses.component';
 
 @NgModule({
   declarations: [CheesesComponent],
-  imports: [CommonModule, CheesesRoutingModule],
+  imports: [CommonModule, CheesesRoutingModule, MatTableModule],
 })
 export class CheesesModule {}
