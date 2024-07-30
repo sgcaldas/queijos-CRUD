@@ -42,4 +42,8 @@ export class CheesesComponent {
     this.router.navigate(['new'], {relativeTo: this.route})
   }
 
+  onEdit(cheese: Cheese) {
+    this.router.navigate(['edit', cheese._id], {relativeTo: this.route})
+  }
+
 }

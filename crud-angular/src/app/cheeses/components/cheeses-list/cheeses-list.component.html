@@ -29,8 +29,7 @@
     </mat-header-cell>
 
     <mat-cell *matCellDef="let cheese" class="action-column">
-      <button mat-icon-button aria-label="Editar um queijo">
-        <!--(click)="onEdit(cheese)"-->
+      <button mat-icon-button aria-label="Editar um queijo" (click)="onEdit(cheese)">
         <mat-icon>edit</mat-icon>
       </button>
 

@@ -5,7 +5,8 @@ import { CheeseFormComponent } from './containers/cheese-form/cheese-form.compon
 
 const routes: Routes = [
   { path: '', component: CheesesComponent},
-  { path: 'new', component: CheeseFormComponent}
+  { path: 'new', component: CheeseFormComponent},
+  { path: 'edit/:id', component: CheeseFormComponent}
 ];
 
 @NgModule({
