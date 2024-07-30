@@ -1,54 +1,18 @@
-<mat-card appearance="outlined">
-  <mat-card-content>
-    <mat-toolbar color="primary">Queijos Disponíveis</mat-toolbar>
+<mat-card>
+  <mat-toolbar color="primary">Queijos Disponíveis</mat-toolbar>
 
-    <div *ngIf="cheeses$ | async as cheeses; else loading">
-      <mat-table [dataSource]="cheeses" class="mat-elevation-z8">
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef>Queijo</mat-header-cell>
-          <mat-cell *matCellDef="let cheese">{{ cheese.name }}</mat-cell>
-        </ng-container>
+  <div class="column-flex mat-elevation-z8">
 
-        <!-- Category Column -->
-        <ng-container matColumnDef="category">
-          <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
-          <mat-cell *matCellDef="let cheese">{{ cheese.category }}
-          <mat-icon aria-hidden="false" aria-label="Categoria do Queijo" fontIcon="{{ cheese.category | category }}">
-          </mat-icon>
-        </mat-cell>
-        </ng-container>
-
-        <!-- Actions Column -->
-        <ng-container matColumnDef="actions">
-          <mat-header-cell *matHeaderCellDef class="action-column">
-            <button mat-mini-fab aria-label="Adicionar um queijo" (click)="onAdd()">
-              <mat-icon>add</mat-icon>
-            </button>
-          </mat-header-cell>
-
-          <mat-cell *matCellDef="let cheese" class="action-column">
-            <button mat-icon-button aria-label="Editar um queijo">
-              <!--(click)="onEdit(cheese)"-->
-              <mat-icon>edit</mat-icon>
-            </button>
-
-            <button mat-icon-button color="warn" aria-label="Remover queijo">
-              <!--(click)="onDelete(cheese)-->
-              <mat-icon>delete</mat-icon>
-            </button>
-          </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-      </mat-table>
-    </div>
+    <app-cheeses-list
+      *ngIf="cheeses$ | async as cheeses; else loading"
+      [cheeses]="cheeses"
+    ></app-cheeses-list>
 
     <ng-template #loading>
       <div class="loading-spinner">
         <mat-spinner></mat-spinner>
       </div>
     </ng-template>
-  </mat-card-content>
+
+  </div>
 </mat-card>

@@ -7,9 +7,10 @@ import { CheesesComponent } from './cheeses/cheeses.component';
 import { SharedModule } from '../shared/shared.module';
 import { CheeseFormComponent } from './cheese-form/cheese-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CheesesListComponent } from './cheeses-list/cheeses-list.component';
 
 @NgModule({
-  declarations: [CheesesComponent, CheeseFormComponent],
+  declarations: [CheesesComponent, CheeseFormComponent, CheesesListComponent],
   imports: [
     CommonModule,
     CheesesRoutingModule,

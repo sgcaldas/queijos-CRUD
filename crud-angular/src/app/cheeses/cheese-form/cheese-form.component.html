@@ -1,10 +1,14 @@
 <mat-card>
+  <mat-toolbar color="primary">Detalhes do Queijo</mat-toolbar>
+
   <mat-card-content>
-    <mat-toolbar color="primary">Detalhes do Queijo</mat-toolbar>
     <form [formGroup]="form" class="min-width margin-top">
       <mat-form-field class="full-width">
         <input matInput placeholder="Nome" formControlName="name" #name />
         <mat-hint align="end">{{ name.value.length || 0 }} / 100</mat-hint>
+        <!-- @if (form.get('name')?.invalid) {
+        <mat-error>{{ formUtils.getErrorMessage(form, "name") }}</mat-error>
+}-->
       </mat-form-field>
 
       <mat-form-field class="full-width max-height">
@@ -17,6 +21,10 @@
           <mat-option value="Meia-Cura">Meia-Cura</mat-option>
           <mat-option value="Maturado">Maturado</mat-option>
         </mat-select>
+        <!-- @if (form.get('category')?.invalid) {
+          <mat-error>{{ formUtils.getErrorMessage(form, "category") }}</mat-error>
+          } -->
+
         <mat-hint align="end">{{ name.value.length || 0 }} / 100</mat-hint>
       </mat-form-field>
     </form>
@@ -32,16 +40,7 @@
   </mat-card-actions>
 </mat-card>
 
-<!-- @if (form.get('name')?.invalid) {
-        <mat-error>{{ formUtils.getErrorMessage(form, "name") }}</mat-error>
-        }
-        </mat-select>
-        @if (form.get('category')?.invalid) {
-        <mat-error>{{ formUtils.getErrorMessage(form, "category") }}</mat-error>
-        }
-      </mat-form-field>
-
-      <mat-toolbar>
+<!--  <mat-toolbar>
         <span>Aulas</span>
         <button mat-icon-button color="accent" (click)="addNewLesson()">
           <mat-icon aria-label="Adicionar uma nova aula">add</mat-icon>

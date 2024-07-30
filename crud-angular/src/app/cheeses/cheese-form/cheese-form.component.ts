@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  NonNullableFormBuilder,
+  Validators,
+} from '@angular/forms';
 import { Cheese } from '../model/cheese';
 import { CheesesService } from '../services/cheeses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cheese-form',
@@ -18,30 +24,29 @@ export class CheeseFormComponent implements OnInit {
     private service: CheesesService,
     private snackBar: MatSnackBar,
     private location: Location,
+    private route: ActivatedRoute,
   ) {
     this.form = this.formBuilder.group({
-      name: [null],
-      category: [null],
+      name: [''],
+      category: ['']
     });
-  }
+   }
 
-  ngOnInit(): void {}
-
-  //   ngOnInit(): void {
-  //     const cheese: Cheese = this.route.snapshot.data['cheese'];
-  //     this.form = this.formBuilder.group({
-  //       _id: [cheese._id],
-  //       name: [
-  //         cheese.name,
-  //         [
-  //           Validators.required,
-  //           Validators.minLength(5),
-  //           Validators.maxLength(100),
-  //         ],
-  //       ],
-  //       category: [cheese.category, [Validators.required]],
-  //     });
-  //   }
+  ngOnInit(): void {
+      // const cheese: Cheese = this.route.snapshot.data['cheese'];
+      // this.form = this.formBuilder.group({
+      //   _id: [cheese._id],
+      //   name: [
+      //     cheese.name,
+      //     [
+      //       Validators.required,
+      //       Validators.minLength(5),
+      //       Validators.maxLength(100),
+      //     ],
+      //   ],
+      //   category: [cheese.category, [Validators.required]],
+      // });
+}
 
   onSubmit() {
     if (this.form.valid) {

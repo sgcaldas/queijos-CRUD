@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-cheeses',
   templateUrl: './cheeses.component.html',
-  styleUrls: ['./cheeses.component.scss']
+  styleUrl: './cheeses.component.scss'
 })
 export class CheesesComponent {
 

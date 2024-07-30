@@ -1,40 +1,46 @@
-<!-- <mat-table [dataSource]="cheeses" class="mat-elevation-z8">
-
+<mat-table [dataSource]="cheeses">
+  <!-- Name Column -->
   <ng-container matColumnDef="name">
     <mat-header-cell *matHeaderCellDef>Queijo</mat-header-cell>
     <mat-cell *matCellDef="let cheese">{{ cheese.name }}</mat-cell>
   </ng-container>
 
+  <!-- Category Column -->
   <ng-container matColumnDef="category">
     <mat-header-cell *matHeaderCellDef>Categoria</mat-header-cell>
-    <mat-cell *matCellDef="let cheese">
-      {{ cheese.category }}
+    <mat-cell *matCellDef="let cheese"
+      >{{ cheese.category }}
       <mat-icon
+        class="padding"
         aria-hidden="false"
-        aria-label="Categoria do queijo"
+        aria-label="Categoria do Queijo"
         fontIcon="{{ cheese.category | category }}"
-      ></mat-icon>
+      >
+      </mat-icon>
     </mat-cell>
   </ng-container>
 
-    <ng-container matColumnDef="actions">
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef class="action-column">
-      <button mat-icon-button aria-label="Adicionar um queijo">
-        <mat-icon (click)="onAdd()">add</mat-icon>
+      <button mat-mini-fab aria-label="Adicionar um queijo" (click)="onAdd()" class="margin-left">
+        <mat-icon>add</mat-icon>
       </button>
     </mat-header-cell>
 
     <mat-cell *matCellDef="let cheese" class="action-column">
       <button mat-icon-button aria-label="Editar um queijo">
-        <mat-icon (click)="onEdit(cheese)">edit</mat-icon>
+        <!--(click)="onEdit(cheese)"-->
+        <mat-icon>edit</mat-icon>
       </button>
 
       <button mat-icon-button color="warn" aria-label="Remover queijo">
-        <mat-icon (click)="onDelete(cheese)">delete</mat-icon>
+        <!--(click)="onDelete(cheese)-->
+        <mat-icon>delete</mat-icon>
       </button>
     </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table> -->
+</mat-table>
