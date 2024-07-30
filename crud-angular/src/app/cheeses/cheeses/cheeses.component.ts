@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cheeses',
@@ -14,11 +15,13 @@ import { ErrorDialogComponent } from '../../shared/components/error-dialog/error
 export class CheesesComponent {
 
   cheeses$: Observable<Cheese[]>;
-  readonly displayedColumns = ['name', 'category'];
+  readonly displayedColumns = ['name', 'category', 'actions'];
 
   constructor(
     private CheesesService: CheesesService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.cheeses$ = this.CheesesService.list()
     .pipe(
@@ -34,4 +37,9 @@ export class CheesesComponent {
       data: errorMsg
     });
   }
+
+  onAdd() {
+    this.router.navigate(['new'], {relativeTo: this.route})
+  }
+
 }

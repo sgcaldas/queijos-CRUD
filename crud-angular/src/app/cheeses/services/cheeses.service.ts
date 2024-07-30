@@ -22,12 +22,12 @@ export class CheesesService {
   }
 
   save(record: Partial<Cheese>) {
-    // console.log(record);
+    console.log(record);
     if (record._id) {
-      // console.log('update');
+      console.log('update');
       return this.update(record);
     }
-    // console.log('create');
+    console.log('create');
     return this.create(record);
   }
 
