@@ -1,16 +1,16 @@
 <mat-card>
   <mat-card-content>
     <mat-toolbar color="primary">Detalhes do Queijo</mat-toolbar>
-    <form [formGroup]="form" class="min-width" class="margin-top">
+    <form [formGroup]="form" class="min-width margin-top">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Nome" formControlName="name" #name/>
+        <input matInput placeholder="Nome" formControlName="name" #name />
         <mat-hint align="end">{{ name.value.length || 0 }} / 100</mat-hint>
       </mat-form-field>
 
       <mat-form-field class="full-width max-height">
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="category">
-          <mat-option value=null></mat-option>
+          <mat-option value="null"></mat-option>
           <mat-option value="Azul">Azul</mat-option>
           <mat-option value="Fresco">Fresco</mat-option>
           <mat-option value="Macio">Macio</mat-option>
@@ -23,11 +23,14 @@
   </mat-card-content>
 
   <mat-card-actions class="actions-center">
-    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
-    <button mat-stroked-button (click)="onCancel()" class="btn-space">Cancelar</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Salvar
+    </button>
+    <button mat-stroked-button (click)="onCancel()" class="btn-space">
+      Cancelar
+    </button>
   </mat-card-actions>
 </mat-card>
-
 
 <!-- @if (form.get('name')?.invalid) {
         <mat-error>{{ formUtils.getErrorMessage(form, "name") }}</mat-error>

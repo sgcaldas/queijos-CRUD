@@ -3,6 +3,7 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { Cheese } from '../model/cheese';
 import { CheesesService } from '../services/cheeses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-cheese-form',
@@ -15,7 +16,8 @@ export class CheeseFormComponent implements OnInit {
   constructor(
     private formBuilder: NonNullableFormBuilder,
     private service: CheesesService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: Location,
   ) {
     this.form = this.formBuilder.group({
       name: [null],
@@ -53,8 +55,7 @@ export class CheeseFormComponent implements OnInit {
   }
 
   onCancel() {
-    console.log('OnCancel');
-    // this.Location.back();
+    this.location.back();
   }
 
   private onSuccess() {
