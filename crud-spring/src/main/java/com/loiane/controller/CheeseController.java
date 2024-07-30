@@ -52,7 +52,6 @@ public class CheeseController {
     public Cheese create(@RequestBody @Valid Cheese cheese) {
 
         return cheeseRepository.save(cheese);
-        // return ResponseEntity.status(HttpStatus.CREATED).body(courseRepository.save(cheese));
     }
 
     @PutMapping("/{id}")
