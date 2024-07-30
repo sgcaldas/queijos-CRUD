@@ -1,10 +1,10 @@
-import { CheesesService } from './../services/cheeses.service';
+import { CheesesService } from '../../services/cheeses.service';
 import { Component } from '@angular/core';
-import { Cheese } from '../model/cheese';
+import { Cheese } from '../../model/cheese';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from '../../shared/components/error-dialog/error-dialog.component';
+import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

@@ -6,6 +6,7 @@
     <app-cheeses-list
       *ngIf="cheeses$ | async as cheeses; else loading"
       [cheeses]="cheeses"
+      (add)="onAdd()"
     ></app-cheeses-list>
 
     <ng-template #loading>

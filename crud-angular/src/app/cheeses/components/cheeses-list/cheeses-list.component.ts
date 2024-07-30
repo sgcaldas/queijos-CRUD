@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Cheese } from '../model/cheese';
+import { Cheese } from '../../model/cheese';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -9,13 +9,13 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class CheesesListComponent implements OnInit {
   @Input() cheeses: Cheese[] = [];
-  //   @Output() add = new EventEmitter(false);
+  @Output() add = new EventEmitter(false);
   //   @Output() edit = new EventEmitter(false);
   //   @Output() remove = new EventEmitter(false);
 
   readonly displayedColumns = ['name', 'category', 'actions'];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -32,6 +32,6 @@ export class CheesesListComponent implements OnInit {
   //   }
 
   onAdd() {
-    this.router.navigate(['new'], { relativeTo: this.route });
+    this.add.emit(true);
   }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CheesesComponent } from './cheeses/cheeses.component';
-import { CheeseFormComponent } from './cheese-form/cheese-form.component';
+import { CheesesComponent } from './containers/cheeses/cheeses.component';
+import { CheeseFormComponent } from './containers/cheese-form/cheese-form.component';
 
 const routes: Routes = [
   { path: '', component: CheesesComponent},

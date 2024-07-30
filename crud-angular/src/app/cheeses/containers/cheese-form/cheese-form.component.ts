@@ -5,8 +5,8 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
-import { Cheese } from '../model/cheese';
-import { CheesesService } from '../services/cheeses.service';
+import { Cheese } from '../../model/cheese';
+import { CheesesService } from '../../services/cheeses.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
