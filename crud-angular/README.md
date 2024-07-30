@@ -1,5 +1,7 @@
 # crud-angular-spring
-Cheeses CRUD | Angular + Spring ![yellow-cheese-isolated-icon](https://www.vecteezy.com/vector-art/2305834-flat-style-yellow-cheese-isolated-icon-on-white-background)
+Vegan Cheese CRUD | Angular + Spring
+
+<img src="https://github.com/user-attachments/assets/8098f603-eaa6-49aa-b9e1-c3ffa070775b" alt="Description" width="200" height="200">
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.8, [Node](https://nodejs.org/pt) 20.15.1, [npm](https://www.npmjs.com/package/npm/v/10.8.2) 10.8.2 and [Angular](https://github.com/angular/angular) 17.3.12.
 
