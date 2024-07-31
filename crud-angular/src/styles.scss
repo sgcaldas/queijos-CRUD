@@ -1,26 +1,36 @@
-@use '@angular/material' as mat;
+@use "@angular/material" as mat;
 @include mat.core();
 
-$dark-theme: mat.define-dark-theme((
- color: (
-   primary: mat.define-palette(mat.$pink-palette),
-   accent: mat.define-palette(mat.$blue-grey-palette),
- ),
-));
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$pink-palette),
+      accent: mat.define-palette(mat.$blue-grey-palette),
+    ),
+  )
+);
 
-$light-theme: mat.define-light-theme((
- color: (
-   primary: mat.define-palette(mat.$indigo-palette),
-   accent: mat.define-palette(mat.$pink-palette),
- ),
-));
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$indigo-palette),
+      accent: mat.define-palette(mat.$pink-palette),
+    ),
+  )
+);
 
 @include mat.all-component-themes($dark-theme);
 
 @media (prefers-color-scheme: light) {
- @include mat.all-component-colors($light-theme);
+  @include mat.all-component-colors($light-theme);
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-color: #f0f0f0; /* Replace with your desired color */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f0f0f0;
 }

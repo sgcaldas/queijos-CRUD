@@ -11,7 +11,7 @@ export class CheesesListComponent implements OnInit {
   @Input() cheeses: Cheese[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
-  //   @Output() remove = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
 
   readonly displayedColumns = ['name', 'category', 'actions'];
 
@@ -27,7 +27,7 @@ export class CheesesListComponent implements OnInit {
     this.edit.emit(cheese);
   }
 
-    //   onDelete(cheese: Cheese) {
-  //     this.remove.emit(cheese);
-  //   }
+  onDelete(cheese: Cheese) {
+    this.remove.emit(cheese);
+  }
 }
