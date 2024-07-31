@@ -3,7 +3,8 @@
 
   <mat-card-content>
     <form [formGroup]="form" class="min-width margin-top">
-      <mat-form-field class="full-width">
+      <mat-form-field class="full-width" appearance="outline" color="accent" >
+        <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="name" #name />
         <mat-hint align="end">{{ name.value.length || 0 }} / 100</mat-hint>
         <!-- @if (form.get('name')?.invalid) {
@@ -11,7 +12,7 @@
 }-->
       </mat-form-field>
 
-      <mat-form-field class="full-width max-height">
+      <mat-form-field class="full-width max-height" color="accent" appearance="outline">
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="category">
           <mat-option value="null"></mat-option>
