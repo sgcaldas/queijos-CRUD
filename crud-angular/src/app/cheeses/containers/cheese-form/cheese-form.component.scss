@@ -12,6 +12,15 @@ mat-card {
   margin-bottom: 0.5em;
  }
 
+ mat-hint {
+  font-size: 0.75em;
+  margin-right: -8px;
+ }
+
+ .custom-hint {
+  color: #f0f0f0;
+}
+
  .full-width{
    width: 100%;
  }

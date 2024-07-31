@@ -78,9 +78,19 @@ export class CheeseFormComponent implements OnInit {
     const field = this.form.get(fieldName);
 
     if(field?.hasError('required')) {
-      return 'Campo obrigatório';
+      return 'Campo obrigatório!';
     }
 
-    return 'Campo inválido;'
+    if(field?.hasError('minlength')) {
+      const requiredLength = field.errors ? field.errors['minlength']['requiredLength'] : 4;
+      return `Desconheço queijos com menos de ${requiredLength} letras!`
+    }
+
+    if(field?.hasError('maxlength')) {
+      const requiredLength = field.errors ? field.errors['maxlength']['requiredLength'] : 50;
+      return `São mais de ${requiredLength} letras. Isso é um queijo?`;
+    }
+
+    return 'Campo inválido!'
   }
 }

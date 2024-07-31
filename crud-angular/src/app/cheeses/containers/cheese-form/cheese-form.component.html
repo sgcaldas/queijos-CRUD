@@ -6,17 +6,13 @@
       <mat-form-field class="full-width" appearance="outline" color="accent">
         <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="name" #name />
-        <mat-hint align="end">{{ name.value.length || 0 }} / 100</mat-hint>
+        <mat-hint align="end" class="custom-hint">{{ name.value.length || 0 }} / 50</mat-hint>
         @if (form.get('name')?.invalid) {
         <mat-error>{{ getErrorMessage("name") }}</mat-error>
         }
       </mat-form-field>
 
-      <mat-form-field
-        class="full-width max-height"
-        color="accent"
-        appearance="outline"
-      >
+      <mat-form-field class="full-width max-height" color="accent" appearance="outline">
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="category">
           <mat-option value="null"></mat-option>
@@ -29,8 +25,6 @@
         @if (form.get('category')?.invalid) {
         <mat-error>{{ getErrorMessage("category") }}</mat-error>
         }
-
-        <mat-hint align="end">{{ name.value.length || 0 }} / 100</mat-hint>
       </mat-form-field>
     </form>
   </mat-card-content>
