@@ -61,7 +61,7 @@ export class CheesesComponent {
         this.CheesesService.remove(cheese._id).subscribe(
           () => {
             this.refresh();
-            this.snackBar.open('Queijo removido com sucesso!', 'X', {
+            this.snackBar.open('Queijo removido com sucesso!', 'x', {
               duration: 5000,
               verticalPosition: 'top',
               horizontalPosition: 'center',
