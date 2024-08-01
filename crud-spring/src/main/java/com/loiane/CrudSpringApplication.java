@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.loiane.enums.Category;
 import com.loiane.model.Cheese;
 import com.loiane.repository.CheeseRepository;
 
@@ -22,7 +23,7 @@ public class CrudSpringApplication {
 
             Cheese c = new Cheese();
             c.setName("Gruyère");
-            c.setCategory("Meia-Cura");
+            c.setCategory(Category.MEIA_CURA);
 
             courseRepository.save(c);
         };

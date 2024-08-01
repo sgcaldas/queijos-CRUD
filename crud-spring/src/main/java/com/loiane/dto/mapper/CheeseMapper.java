@@ -3,6 +3,7 @@ package com.loiane.dto.mapper;
 import org.springframework.stereotype.Component;
 
 import com.loiane.dto.CheeseDTO;
+import com.loiane.enums.Category;
 import com.loiane.model.Cheese;
 
 @Component
@@ -12,7 +13,7 @@ public class CheeseMapper {
         if (cheese == null) {
             return null;
         }
-        return new CheeseDTO(cheese.getId(), cheese.getName(), cheese.getCategory());
+        return new CheeseDTO(cheese.getId(), cheese.getName(), "Meia-Cura");
     }
 
     public Cheese toEntity(CheeseDTO cheeseDTO) {
@@ -24,7 +25,7 @@ public class CheeseMapper {
             cheese.setId(cheeseDTO.id());
         }
         cheese.setName(cheeseDTO.name());
-        cheese.setCategory(cheeseDTO.category());
+        cheese.setCategory(Category.MEIA_CURA);
 
         return cheese;
     }

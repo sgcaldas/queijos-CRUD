@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.loiane.dto.CheeseDTO;
 import com.loiane.dto.mapper.CheeseMapper;
+import com.loiane.enums.Category;
 import com.loiane.exception.RecordNotFoundException;
 import com.loiane.repository.CheeseRepository;
 
@@ -48,7 +49,7 @@ public class CheeseService {
         return cheeseRepository.findById(id)
                 .map(recordFound -> {
                     recordFound.setName(cheese.name());
-                    recordFound.setCategory(cheese.category());
+                    recordFound.setCategory(Category.MEIA_CURA);
                     return cheeseMapper.toDTO(cheeseRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundException(id));
     }
