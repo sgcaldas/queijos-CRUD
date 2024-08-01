@@ -3,7 +3,6 @@ package com.loiane.controller;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,10 +39,9 @@ public class CheeseController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Cheese> findById(@PathVariable @NotNull @Positive Long id) {
-        return cheeseService.findById(id)
-                .map(recordFound -> ResponseEntity.ok().body(recordFound))
-                .orElse(ResponseEntity.notFound().build());
+    public Cheese findById(@PathVariable @NotNull @Positive Long id) {
+        return cheeseService.findById(id);
+
     }
 
     @PostMapping
@@ -53,20 +51,14 @@ public class CheeseController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Cheese> update(@PathVariable @NotNull @Positive Long id,
+    public Cheese update(@PathVariable @NotNull @Positive Long id,
             @RequestBody @Valid Cheese cheese) {
-        return cheeseService.update(id, cheese)
-                .map(recordFound -> ResponseEntity.ok().body(recordFound))
-                .orElse(ResponseEntity.notFound().build());
+        return cheeseService.update(id, cheese);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable @NotNull @Positive Long id) {
-        if (cheeseService.delete(id)) {
-            return ResponseEntity.noContent().<Void>build();
-        }
-        return ResponseEntity.notFound().build();
-
+    @ResponseStatus(code = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable @NotNull @Positive Long id) {
+        cheeseService.delete(id);
     }
-
 }

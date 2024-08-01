@@ -1,13 +1,12 @@
 package com.loiane.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.loiane.exception.RecordNotFoundException;
 import com.loiane.model.Cheese;
 import com.loiane.repository.CheeseRepository;
 
@@ -29,8 +28,8 @@ public class CheeseService {
         return cheeseRepository.findAll();
     }
 
-    public Optional<Cheese> findById(@PathVariable @NotNull @Positive Long id) {
-        return cheeseRepository.findById(id);
+    public Cheese findById(@PathVariable @NotNull @Positive Long id) {
+        return cheeseRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
     public Cheese create(@Valid Cheese cheese) {
@@ -38,21 +37,18 @@ public class CheeseService {
         return cheeseRepository.save(cheese);
     }
 
-    public Optional<Cheese> update(@NotNull @Positive Long id, @Valid Cheese cheese) {
+    public Cheese update(@NotNull @Positive Long id, @Valid Cheese cheese) {
         return cheeseRepository.findById(id)
                 .map(recordFound -> {
                     recordFound.setName(cheese.getName());
                     recordFound.setCategory(cheese.getCategory());
                     return cheeseRepository.save(recordFound);
-                });
+                }).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public boolean delete(@PathVariable @NotNull @Positive Long id) {
-        return cheeseRepository.findById(id)
-                .map(recordFound -> {
-                    cheeseRepository.deleteById(id);
-                    return true;
-                })
-                .orElse(false);
+    public void delete(@PathVariable @NotNull @Positive Long id) {
+
+        cheeseRepository.delete(cheeseRepository.findById(id)
+                .orElseThrow(() -> new RecordNotFoundException(id)));
     }
 }
