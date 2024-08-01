@@ -1,13 +1,15 @@
 package com.loiane.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.loiane.dto.CheeseDTO;
+import com.loiane.dto.mapper.CheeseMapper;
 import com.loiane.exception.RecordNotFoundException;
-import com.loiane.model.Cheese;
 import com.loiane.repository.CheeseRepository;
 
 import jakarta.validation.Valid;
@@ -19,30 +21,35 @@ import jakarta.validation.constraints.Positive;
 public class CheeseService {
 
     private final CheeseRepository cheeseRepository;
+    private final CheeseMapper cheeseMapper;
 
-    public CheeseService(CheeseRepository cheeseRepository) {
+    public CheeseService(CheeseRepository cheeseRepository, CheeseMapper cheeseMapper) {
         this.cheeseRepository = cheeseRepository;
+        this.cheeseMapper = cheeseMapper;
     }
 
-    public List<Cheese> list() {
-        return cheeseRepository.findAll();
+    public List<CheeseDTO> list() {
+        return cheeseRepository.findAll()
+                .stream()
+                .map(cheeseMapper::toDTO)
+                .collect(Collectors.toList());
     }
 
-    public Cheese findById(@PathVariable @NotNull @Positive Long id) {
-        return cheeseRepository.findById(id).orElseThrow(() -> new RecordNotFoundException(id));
+    public CheeseDTO findById(@PathVariable @NotNull @Positive Long id) {
+        return cheeseRepository.findById(id).map(cheeseMapper::toDTO)
+                .orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public Cheese create(@Valid Cheese cheese) {
-
-        return cheeseRepository.save(cheese);
+    public CheeseDTO create(@NotNull @Valid CheeseDTO cheese) {
+        return cheeseMapper.toDTO(cheeseRepository.save(cheeseMapper.toEntity(cheese)));
     }
 
-    public Cheese update(@NotNull @Positive Long id, @Valid Cheese cheese) {
+    public CheeseDTO update(@NotNull @Positive Long id, @Valid CheeseDTO cheese) {
         return cheeseRepository.findById(id)
                 .map(recordFound -> {
-                    recordFound.setName(cheese.getName());
-                    recordFound.setCategory(cheese.getCategory());
-                    return cheeseRepository.save(recordFound);
+                    recordFound.setName(cheese.name());
+                    recordFound.setCategory(cheese.category());
+                    return cheeseMapper.toDTO(cheeseRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundException(id));
     }
 

@@ -45,6 +45,7 @@ public class Cheese {
     @Length(max = 10)
     @Pattern(regexp = "Ativo|Inativo")
     @Column(length = 10, nullable = false)
+    //@JsonIgnore
     private String status = "Ativo";
 
 }

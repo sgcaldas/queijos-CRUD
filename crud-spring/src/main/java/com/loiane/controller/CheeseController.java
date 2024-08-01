@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.loiane.model.Cheese;
+import com.loiane.dto.CheeseDTO;
 import com.loiane.service.CheeseService;
 
 import jakarta.validation.Valid;
@@ -34,25 +34,25 @@ public class CheeseController {
     }
 
     @GetMapping
-    public List<Cheese> list() {
+    public List<CheeseDTO> list() {
         return cheeseService.list();
     }
 
     @GetMapping("/{id}")
-    public Cheese findById(@PathVariable @NotNull @Positive Long id) {
+    public CheeseDTO findById(@PathVariable @NotNull @Positive Long id) {
         return cheeseService.findById(id);
 
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Cheese create(@RequestBody @Valid Cheese cheese) {
+    public CheeseDTO create(@RequestBody @Valid @NotNull CheeseDTO cheese) {
         return cheeseService.create(cheese);
     }
 
     @PutMapping("/{id}")
-    public Cheese update(@PathVariable @NotNull @Positive Long id,
-            @RequestBody @Valid Cheese cheese) {
+    public CheeseDTO update(@PathVariable @NotNull @Positive Long id,
+            @RequestBody @Valid CheeseDTO cheese) {
         return cheeseService.update(id, cheese);
     }
 
