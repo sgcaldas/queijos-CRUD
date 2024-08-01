@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loiane.model.Cheese;
-import com.loiane.repository.CheeseRepository;
+import com.loiane.service.CheeseService;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
@@ -25,56 +25,48 @@ import jakarta.validation.constraints.Positive;
 @Validated
 @RestController
 @RequestMapping("/api/cheeses")
-//@AllArgsConstructor
 
 public class CheeseController {
 
-    private final CheeseRepository cheeseRepository;
+    private final CheeseService cheeseService;
 
-    public CheeseController(CheeseRepository cheeseRepository) {
-        this.cheeseRepository = cheeseRepository;
+    public CheeseController(CheeseService cheeseService) {
+        this.cheeseService = cheeseService;
     }
 
     @GetMapping
     public List<Cheese> list() {
-        return cheeseRepository.findAll();
+        return cheeseService.list();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Cheese> findById(@PathVariable @NotNull @Positive Long id) {
-        return cheeseRepository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
+        return cheeseService.findById(id)
+                .map(recordFound -> ResponseEntity.ok().body(recordFound))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PostMapping
     @ResponseStatus(code = HttpStatus.CREATED)
     public Cheese create(@RequestBody @Valid Cheese cheese) {
-
-        return cheeseRepository.save(cheese);
+        return cheeseService.create(cheese);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Cheese> update(@PathVariable @NotNull @Positive Long id,
             @RequestBody @Valid Cheese cheese) {
-        return cheeseRepository.findById(id)
-                .map(recordFound -> {
-                    recordFound.setName(cheese.getName());
-                    recordFound.setCategory(cheese.getCategory());
-                    Cheese updated = cheeseRepository.save(recordFound);
-                    return ResponseEntity.ok().body(updated);
-                })
+        return cheeseService.update(id, cheese)
+                .map(recordFound -> ResponseEntity.ok().body(recordFound))
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable @NotNull @Positive Long id) {
-        return cheeseRepository.findById(id)
-                .map(recordFound -> {
-                    cheeseRepository.deleteById(id);
-                    return ResponseEntity.noContent().<Void>build();
-                })
-                .orElse(ResponseEntity.notFound().build());
+        if (cheeseService.delete(id)) {
+            return ResponseEntity.noContent().<Void>build();
+        }
+        return ResponseEntity.notFound().build();
+
     }
 
 }
