@@ -1,16 +1,12 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  NonNullableFormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
 import { Cheese } from '../../model/cheese';
 import { CheesesService } from '../../services/cheeses.service';
+import { Brand } from '../../model/brand';
 
 @Component({
   selector: 'app-cheese-form',
@@ -47,6 +43,41 @@ export class CheeseFormComponent implements OnInit {
         ],
       ],
       category: [cheese.category, [Validators.required]],
+      brands: this.formBuilder.array(this.retrieveBrands(cheese))
+    });
+    console.log(this.form);
+    console.log(this.form.value);
+  }
+
+  private retrieveBrands(cheese: Cheese) {
+    const brands = [];
+    if (cheese?.brands) {
+      cheese.brands.forEach((brand) => brands.push(this.createBrand(brand)));
+    } else {
+      brands.push(this.createBrand());
+    }
+    return brands;
+  }
+
+  private createBrand(brand: Brand = { id: '', name: '', youtubeUrl: '' }) {
+    return this.formBuilder.group({
+      id: [brand.id],
+      name: [
+        brand.name,
+        [
+          //Validators.required,
+          //Validators.minLength(4),
+          //Validators.maxLength(100),
+        ],
+      ],
+      youtubeUrl: [
+        brand.youtubeUrl,
+        [
+          //Validators.required,
+          //Validators.minLength(10),
+          //Validators.maxLength(11),
+        ],
+      ],
     });
   }
 
@@ -77,20 +108,24 @@ export class CheeseFormComponent implements OnInit {
   getErrorMessage(fieldName: string) {
     const field = this.form.get(fieldName);
 
-    if(field?.hasError('required')) {
+    if (field?.hasError('required')) {
       return 'Campo obrigatório!';
     }
 
-    if(field?.hasError('minlength')) {
-      const requiredLength = field.errors ? field.errors['minlength']['requiredLength'] : 4;
-      return `Desconheço queijos com menos de ${requiredLength} letras!`
+    if (field?.hasError('minlength')) {
+      const requiredLength = field.errors
+        ? field.errors['minlength']['requiredLength']
+        : 4;
+      return `Desconheço queijos com menos de ${requiredLength} letras!`;
     }
 
-    if(field?.hasError('maxlength')) {
-      const requiredLength = field.errors ? field.errors['maxlength']['requiredLength'] : 50;
+    if (field?.hasError('maxlength')) {
+      const requiredLength = field.errors
+        ? field.errors['maxlength']['requiredLength']
+        : 50;
       return `São mais de ${requiredLength} letras. Isso é um queijo?`;
     }
 
-    return 'Campo inválido!'
+    return 'Campo inválido!';
   }
 }

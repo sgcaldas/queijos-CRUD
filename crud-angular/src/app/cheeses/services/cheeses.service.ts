@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Cheese } from '../model/cheese';
-import { delay, first, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { delay, first } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -22,12 +21,9 @@ export class CheesesService {
   }
 
   save(record: Partial<Cheese>) {
-    //console.log(record);
     if (record._id) {
-      //console.log('update');
       return this.update(record);
     }
-    //console.log('create');
     return this.create(record);
   }
 
