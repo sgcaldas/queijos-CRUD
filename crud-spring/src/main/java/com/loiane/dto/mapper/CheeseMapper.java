@@ -1,7 +1,11 @@
 package com.loiane.dto.mapper;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Component;
 
+import com.loiane.dto.BrandDTO;
 import com.loiane.dto.CheeseDTO;
 import com.loiane.enums.Category;
 import com.loiane.model.Cheese;
@@ -13,7 +17,13 @@ public class CheeseMapper {
         if (cheese == null) {
             return null;
         }
-        return new CheeseDTO(cheese.getId(), cheese.getName(), cheese.getCategory().getValue());
+
+        List<BrandDTO> brands = cheese.getBrands()
+                .stream()
+                .map(brand -> new BrandDTO(brand.getId(), brand.getName(), brand.getYoutubeUrl()))
+                .collect(Collectors.toList());
+        return new CheeseDTO(cheese.getId(), cheese.getName(), cheese.getCategory().getValue(),
+        brands);
     }
 
     public Cheese toEntity(CheeseDTO cheeseDTO) {

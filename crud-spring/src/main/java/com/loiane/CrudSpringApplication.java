@@ -32,6 +32,12 @@ public class CrudSpringApplication {
             b.setCheese(c);
             c.getBrands().add(b);
 
+            Brand b1 = new Brand();
+            b1.setName("Violife");
+            b1.setYoutubeUrl("4jOOvNipBtQ");
+            b1.setCheese(c);
+            c.getBrands().add(b1);
+
             courseRepository.save(c);
         };
     }
