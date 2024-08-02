@@ -18,12 +18,12 @@ public class CheeseMapper {
             return null;
         }
 
-        List<BrandDTO> brands = cheese.getBrands()
+        List<BrandDTO> brands = cheese.getBrand()
                 .stream()
                 .map(brand -> new BrandDTO(brand.getId(), brand.getName(), brand.getYoutubeUrl()))
                 .collect(Collectors.toList());
         return new CheeseDTO(cheese.getId(), cheese.getName(), cheese.getCategory().getValue(),
-        brands);
+                brands);
     }
 
     public Cheese toEntity(CheeseDTO cheeseDTO) {
@@ -44,8 +44,6 @@ public class CheeseMapper {
             return null;
         }
         return switch (value) {
-            case "Azul" ->
-                Category.AZUL;
             case "Fresco" ->
                 Category.FRESCO;
             case "Macio" ->

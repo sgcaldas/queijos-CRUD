@@ -23,20 +23,20 @@ public class CrudSpringApplication {
             courseRepository.deleteAll();
 
             Cheese c = new Cheese();
-            c.setName("Gruyère");
-            c.setCategory(Category.MEIA_CURA);
+            c.setName("Parmesão");
+            c.setCategory(Category.MATURADO);
 
             Brand b = new Brand();
-            b.setName("Dayia");
+            b.setName("Violife");
             b.setYoutubeUrl("F3hiBJUg2ss");
             b.setCheese(c);
-            c.getBrands().add(b);
+            c.getBrand().add(b);
 
             Brand b1 = new Brand();
-            b1.setName("Violife");
+            b1.setName("Vida Veg");
             b1.setYoutubeUrl("4jOOvNipBtQ");
             b1.setCheese(c);
-            c.getBrands().add(b1);
+            c.getBrand().add(b1);
 
             courseRepository.save(c);
         };

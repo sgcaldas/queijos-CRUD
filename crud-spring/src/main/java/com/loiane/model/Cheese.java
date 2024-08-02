@@ -55,5 +55,5 @@ public class Cheese {
     private Status status = Status.ACTIVE;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cheese")
-    private List<Brand> brands = new ArrayList<>();
+    private List<Brand> brand = new ArrayList<>();
 }
