@@ -13,7 +13,7 @@ public class CheeseMapper {
         if (cheese == null) {
             return null;
         }
-        return new CheeseDTO(cheese.getId(), cheese.getName(), "Meia-Cura");
+        return new CheeseDTO(cheese.getId(), cheese.getName(), cheese.getCategory().getValue());
     }
 
     public Cheese toEntity(CheeseDTO cheeseDTO) {
@@ -25,9 +25,27 @@ public class CheeseMapper {
             cheese.setId(cheeseDTO.id());
         }
         cheese.setName(cheeseDTO.name());
-        cheese.setCategory(Category.MEIA_CURA);
-
+        cheese.setCategory(convertCategoryValue(cheeseDTO.category()));
         return cheese;
     }
 
+    public Category convertCategoryValue(String value) {
+        if (value == null) {
+            return null;
+        }
+        return switch (value) {
+            case "Azul" ->
+                Category.AZUL;
+            case "Fresco" ->
+                Category.FRESCO;
+            case "Macio" ->
+                Category.MACIO;
+            case "Meia-Cura" ->
+                Category.MEIA_CURA;
+            case "Maturado" ->
+                Category.MATURADO;
+            default ->
+                throw new IllegalArgumentException("Categoria inválida: " + value);
+        };
+    }
 }

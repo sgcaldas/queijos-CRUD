@@ -1,15 +1,11 @@
 package com.loiane.enums;
 
-public enum Category {
-    AZUL("Azul"),
-    FRESCO("Fresco"),
-    MACIO("Macio"),
-    MEIA_CURA("Meia-Cura"), 
-    MATURADO("Maturado");
+public enum Status {
+    ACTIVE("Ativo"), INACTIVE("Inativo");
 
     private String value;
 
-    private Category(String value) {
+    private Status(String value) {
         this.value = value;
     }
 
@@ -21,5 +17,4 @@ public enum Category {
     public String toString() {
         return value;
     }
-
 }

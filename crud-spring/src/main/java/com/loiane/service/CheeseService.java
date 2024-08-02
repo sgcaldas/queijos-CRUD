@@ -5,11 +5,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import com.loiane.dto.CheeseDTO;
 import com.loiane.dto.mapper.CheeseMapper;
-import com.loiane.enums.Category;
 import com.loiane.exception.RecordNotFoundException;
 import com.loiane.repository.CheeseRepository;
 
@@ -36,7 +34,7 @@ public class CheeseService {
                 .collect(Collectors.toList());
     }
 
-    public CheeseDTO findById(@PathVariable @NotNull @Positive Long id) {
+    public CheeseDTO findById(@NotNull @Positive Long id) {
         return cheeseRepository.findById(id).map(cheeseMapper::toDTO)
                 .orElseThrow(() -> new RecordNotFoundException(id));
     }
@@ -49,12 +47,12 @@ public class CheeseService {
         return cheeseRepository.findById(id)
                 .map(recordFound -> {
                     recordFound.setName(cheese.name());
-                    recordFound.setCategory(Category.MEIA_CURA);
+                    recordFound.setCategory(this.cheeseMapper.convertCategoryValue(cheese.category()));
                     return cheeseMapper.toDTO(cheeseRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundException(id));
     }
 
-    public void delete(@PathVariable @NotNull @Positive Long id) {
+    public void delete(@NotNull @Positive Long id) {
 
         cheeseRepository.delete(cheeseRepository.findById(id)
                 .orElseThrow(() -> new RecordNotFoundException(id)));
