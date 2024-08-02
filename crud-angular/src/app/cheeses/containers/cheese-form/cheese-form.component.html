@@ -25,6 +25,38 @@
         <mat-error>{{ getErrorMessage("category") }}</mat-error>
         }
       </mat-form-field>
+
+      <mat-toolbar color="accent">
+        <span>Marcas</span>
+        <button mat-icon-button>
+          <!-- (click)="addNewLesson()"> -->
+          <mat-icon aria-label="Adicionar uma nova marca de queijo">add</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <table style="width: 100%" formArrayName="brands">
+        <tr>
+          <td>
+            <mat-form-field class="margin-top" color="accent" appearance="outline">
+              <mat-label>Nome da Marca</mat-label>
+              <input matInput formControlName="name" />
+            </mat-form-field>
+          </td>
+
+          <td>
+            <mat-form-field  class="margin-top" color="accent" appearance="outline">
+              <span matTextPrefix class="custom-hint">https://youtu.be/</span>
+              <input matInput type="text" placeholder="preencha_esta_URL" formControlName="youtubeUrl" />
+            </mat-form-field>
+          </td>
+          <td>
+            <button mat-icon-button color="warn">
+              <mat-icon aria-label="Remover a aula">delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </table>
+
     </form>
   </mat-card-content>
 
@@ -38,14 +70,7 @@
   </mat-card-actions>
 </mat-card>
 
-<!--  <mat-toolbar>
-        <span>Aulas</span>
-        <button mat-icon-button color="accent" (click)="addNewLesson()">
-          <mat-icon aria-label="Adicionar uma nova aula">add</mat-icon>
-        </button>
-      </mat-toolbar>
-
-      @if (formUtils.isFormArrayRequired(form, 'lessons')) {
+<!-- @if (formUtils.isFormArrayRequired(form, 'lessons')) {
       <mat-error class="form-array-error"
         >Adicione pelo menos uma aula.
       </mat-error>
