@@ -29,29 +29,41 @@
       <div>
         <mat-toolbar color="accent" class="margin-bottom rounded">
           <span>Marcas</span>
-          <button class="margin-left" mat-icon-button aria-label="Adicionar uma nova marca de queijo">
-            <mat-icon>add</mat-icon> <!-- (click)="addNewLesson()"> -->
+          <button (click)="addNewLesson()" class="margin-left" mat-icon-button
+            aria-label="Adicionar uma nova marca de queijo">
+            <mat-icon>add</mat-icon>
           </button>
         </mat-toolbar>
 
+        @if (isFormArrayRequired()) {
+        <mat-error class="form-array-error">Adicione pelo menos uma marca!</mat-error>
+        }
+
         <table style="width:100%" formArrayName="brands" *ngFor="let brand of getBrandsFormArray(); let i = index">
           <tr [formGroupName]="i">
-            <td style="width: 45%">
+            <td style="width: 50%">
               <mat-form-field class="full-width" color="accent" appearance="outline">
                 <mat-label>Nome da Marca</mat-label>
                 <input matInput formControlName="name" placeholder="Nome da Marca" />
+                @if (getBrandsFormArray()[i].get('name')?.invalid) {
+                <mat-error>{{ getErrorMessage("category") }}</mat-error>
+                }
               </mat-form-field>
             </td>
 
-            <td style="width:55%" class="max-width">
+            <td style="width:50%" class="max-width">
               <mat-form-field class="full-width margin-left" color="accent" appearance="outline">
+                <mat-label>URL</mat-label>
                 <span matTextPrefix class="custom-hint">https://youtu.be/</span>
-                <input matInput type="text" placeholder="preencha_esta_URL" formControlName="youtubeUrl" />
+                <input matInput type="text" placeholder="URL" formControlName="youtubeUrl" />
               </mat-form-field>
             </td>
-            <button mat-icon-button color="warn">
-              <mat-icon aria-label="Remover a aula">delete</mat-icon>
-            </button>
+
+            <td>
+              <button (click)="removeBrand(i)" mat-icon-button color="warn" class="margin-left margin-bottom">
+                <mat-icon aria-label="Remover o queijo">delete</mat-icon>
+              </button>
+            </td>
 
           </tr>
         </table>

@@ -48,7 +48,10 @@ export class CheeseFormComponent implements OnInit {
         ],
       ],
       category: [cheese.category, [Validators.required]],
-      brands: this.formBuilder.array(this.retrieveBrands(cheese)),
+      brands: this.formBuilder.array(
+        this.retrieveBrands(cheese),
+        Validators.required
+      ),
     });
     console.log(this.form);
     console.log(this.form.value);
@@ -67,13 +70,32 @@ export class CheeseFormComponent implements OnInit {
   private createBrand(brand: Brand = { id: '', name: '', youtubeUrl: '' }) {
     return this.formBuilder.group({
       id: [brand.id],
-      name: [brand.name, []],
-      youtubeUrl: [brand.youtubeUrl, []],
+      name: [
+        brand.name,
+        [
+          Validators.required,
+          Validators.minLength(4),
+          Validators.maxLength(50),
+        ],
+      ],
+      youtubeUrl: [brand.youtubeUrl, [Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(11),]],
     });
   }
 
   getBrandsFormArray() {
     return (<UntypedFormArray>this.form.get('brands')).controls;
+  }
+
+  addNewLesson() {
+    const brands = this.form.get('brands') as UntypedFormArray;
+    brands.push(this.createBrand());
+  }
+
+  removeBrand(index: number) {
+    const brands = this.form.get('brands') as UntypedFormArray;
+    brands.removeAt(index);
   }
 
   onSubmit() {
@@ -83,6 +105,7 @@ export class CheeseFormComponent implements OnInit {
         (error) => this.onError()
       );
     } else {
+      alert('form invalido');
       //this.formUtils.validateAllFormFields(this.form);
     }
   }
@@ -104,7 +127,7 @@ export class CheeseFormComponent implements OnInit {
     const field = this.form.get(fieldName);
 
     if (field?.hasError('required')) {
-      return 'Campo obrigatório!';
+      return 'Campo obrigatório';
     }
 
     if (field?.hasError('minlength')) {
@@ -122,5 +145,10 @@ export class CheeseFormComponent implements OnInit {
     }
 
     return 'Campo inválido!';
+  }
+
+  isFormArrayRequired() {
+    const brands = this.form.get('brands') as UntypedFormArray;
+    return !brands.valid && brands.hasError('required') && brands.touched;
   }
 }
