@@ -1,6 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import {
+  FormGroup,
+  NonNullableFormBuilder,
+  UntypedFormArray,
+  Validators,
+} from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 
@@ -14,7 +19,6 @@ import { Brand } from '../../model/brand';
   styleUrl: './cheese-form.component.scss',
 })
 export class CheeseFormComponent implements OnInit {
-
   form!: FormGroup;
 
   constructor(
@@ -44,7 +48,7 @@ export class CheeseFormComponent implements OnInit {
         ],
       ],
       category: [cheese.category, [Validators.required]],
-      brands: this.formBuilder.array(this.retrieveBrands(cheese))
+      brands: this.formBuilder.array(this.retrieveBrands(cheese)),
     });
     console.log(this.form);
     console.log(this.form.value);
@@ -63,23 +67,13 @@ export class CheeseFormComponent implements OnInit {
   private createBrand(brand: Brand = { id: '', name: '', youtubeUrl: '' }) {
     return this.formBuilder.group({
       id: [brand.id],
-      name: [
-        brand.name,
-        [
-          //Validators.required,
-          //Validators.minLength(4),
-          //Validators.maxLength(100),
-        ],
-      ],
-      youtubeUrl: [
-        brand.youtubeUrl,
-        [
-          //Validators.required,
-          //Validators.minLength(10),
-          //Validators.maxLength(11),
-        ],
-      ],
+      name: [brand.name, []],
+      youtubeUrl: [brand.youtubeUrl, []],
     });
+  }
+
+  getBrandsFormArray() {
+    return (<UntypedFormArray>this.form.get('brands')).controls;
   }
 
   onSubmit() {

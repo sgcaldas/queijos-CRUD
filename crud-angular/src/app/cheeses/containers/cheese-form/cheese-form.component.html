@@ -26,37 +26,37 @@
         }
       </mat-form-field>
 
-      <mat-toolbar color="accent">
-        <span>Marcas</span>
-        <button mat-icon-button>
-          <!-- (click)="addNewLesson()"> -->
-          <mat-icon aria-label="Adicionar uma nova marca de queijo">add</mat-icon>
-        </button>
-      </mat-toolbar>
+      <div>
+        <mat-toolbar color="accent" class="rounded" class="margin-bottom">
+          <span>Marcas</span>
+          <button mat-icon-button aria-label="Adicionar uma nova marca de queijo">
+            <mat-icon>add</mat-icon> <!-- (click)="addNewLesson()"> -->
+          </button>
+        </mat-toolbar>
 
-      <table style="width: 100%" formArrayName="brands">
-        <tr>
-          <td>
-            <mat-form-field style="width: 100%" class="margin-top" color="accent" appearance="outline">
-              <mat-label>Nome da Marca</mat-label>
-              <input matInput formControlName="name" />
-            </mat-form-field>
-          </td>
+        <table style="width:100%" formArrayName="brands" *ngFor="let brand of getBrandsFormArray(); let i = index">
+          <tr [formGroupName]="i">
+            <td style="width:45%">
+              <mat-form-field class="full-width" color="accent" appearance="outline">
+                <mat-label>Nome da Marca</mat-label>
+                <input matInput formControlName="name" placeholder="Nome da Marca" />
+              </mat-form-field>
+            </td>
 
-          <td>
-            <mat-form-field style="width: 100%" class="margin-top" color="accent" appearance="outline">
-              <span matTextPrefix class="custom-hint">https://youtu.be/</span>
-              <input matInput type="text" placeholder="preencha_esta_URL" formControlName="youtubeUrl" />
-            </mat-form-field>
-          </td>
-          <td>
+            <td style="width:55%">
+              <mat-form-field class="full-width margin-left" color="accent" appearance="outline">
+                <span matTextPrefix class="custom-hint">https://youtu.be/</span>
+                <input matInput type="text" placeholder="preencha_esta_URL" formControlName="youtubeUrl" />
+              </mat-form-field>
+            </td>
             <button mat-icon-button color="warn">
               <mat-icon aria-label="Remover a aula">delete</mat-icon>
             </button>
-          </td>
-        </tr>
-      </table>
 
+          </tr>
+        </table>
+
+      </div>
     </form>
   </mat-card-content>
 
