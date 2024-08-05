@@ -62,7 +62,7 @@ export class CheesesComponent {
           () => {
             this.refresh();
             this.snackBar.open('Queijo removido com sucesso!', 'x', {
-              duration: 5000,
+              duration: 500,
               verticalPosition: 'top',
               horizontalPosition: 'center',
             });

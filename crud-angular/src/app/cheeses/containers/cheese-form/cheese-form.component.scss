@@ -55,9 +55,17 @@ mat-card {
  }
 
  .margin-left {
-  margin-left: 0.5em;
+  margin-left: 0.1em;
  }
 
  .max-height {
   max-height: 4.7em;
+ }
+
+ .max-width {
+  max-width: 150px;
+ }
+
+ button {
+  padding: 20px;
  }

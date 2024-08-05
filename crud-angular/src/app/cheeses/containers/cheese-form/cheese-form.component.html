@@ -27,23 +27,23 @@
       </mat-form-field>
 
       <div>
-        <mat-toolbar color="accent" class="rounded" class="margin-bottom">
+        <mat-toolbar color="accent" class="margin-bottom rounded">
           <span>Marcas</span>
-          <button mat-icon-button aria-label="Adicionar uma nova marca de queijo">
+          <button class="margin-left" mat-icon-button aria-label="Adicionar uma nova marca de queijo">
             <mat-icon>add</mat-icon> <!-- (click)="addNewLesson()"> -->
           </button>
         </mat-toolbar>
 
         <table style="width:100%" formArrayName="brands" *ngFor="let brand of getBrandsFormArray(); let i = index">
           <tr [formGroupName]="i">
-            <td style="width:45%">
+            <td style="width: 45%">
               <mat-form-field class="full-width" color="accent" appearance="outline">
                 <mat-label>Nome da Marca</mat-label>
                 <input matInput formControlName="name" placeholder="Nome da Marca" />
               </mat-form-field>
             </td>
 
-            <td style="width:55%">
+            <td style="width:55%" class="max-width">
               <mat-form-field class="full-width margin-left" color="accent" appearance="outline">
                 <span matTextPrefix class="custom-hint">https://youtu.be/</span>
                 <input matInput type="text" placeholder="preencha_esta_URL" formControlName="youtubeUrl" />
