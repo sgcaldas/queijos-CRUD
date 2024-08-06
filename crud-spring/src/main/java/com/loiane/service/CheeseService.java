@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import com.loiane.dto.CheeseDTO;
 import com.loiane.dto.mapper.CheeseMapper;
 import com.loiane.exception.RecordNotFoundException;
+import com.loiane.model.Cheese;
 import com.loiane.repository.CheeseRepository;
 
 import jakarta.validation.Valid;
@@ -46,8 +47,11 @@ public class CheeseService {
     public CheeseDTO update(@NotNull @Positive Long id, @Valid CheeseDTO cheeseDTO) {
         return cheeseRepository.findById(id)
                 .map(recordFound -> {
+                    Cheese cheese = cheeseMapper.toEntity(cheeseDTO);
                     recordFound.setName(cheeseDTO.name());
                     recordFound.setCategory(this.cheeseMapper.convertCategoryValue(cheeseDTO.category()));
+                    recordFound.getBrand().clear();
+                    cheese.getBrand().forEach(brand -> recordFound.getBrand().add(brand));
                     return cheeseMapper.toDTO(cheeseRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundException(id));
     }
