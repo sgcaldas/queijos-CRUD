@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import com.loiane.dto.BrandDTO;
 import com.loiane.dto.CheeseDTO;
 import com.loiane.enums.Category;
+import com.loiane.model.Brand;
 import com.loiane.model.Cheese;
 
 @Component
@@ -36,6 +37,17 @@ public class CheeseMapper {
         }
         cheese.setName(cheeseDTO.name());
         cheese.setCategory(convertCategoryValue(cheeseDTO.category()));
+
+        List<Brand> brands = cheeseDTO.brands().stream().map(brandDTO -> {
+            var brand = new Brand();
+            brand.setId(brandDTO.id());
+            brand.setName(brandDTO.name());
+            brand.setYoutubeUrl(brandDTO.youtubeUrl());
+            brand.setCheese(cheese);
+            return brand;
+        }).collect(Collectors.toList());
+        cheese.setBrand(brands);
+
         return cheese;
     }
 

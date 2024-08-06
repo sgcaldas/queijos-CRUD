@@ -43,11 +43,11 @@ public class CheeseService {
         return cheeseMapper.toDTO(cheeseRepository.save(cheeseMapper.toEntity(cheese)));
     }
 
-    public CheeseDTO update(@NotNull @Positive Long id, @Valid CheeseDTO cheese) {
+    public CheeseDTO update(@NotNull @Positive Long id, @Valid CheeseDTO cheeseDTO) {
         return cheeseRepository.findById(id)
                 .map(recordFound -> {
-                    recordFound.setName(cheese.name());
-                    recordFound.setCategory(this.cheeseMapper.convertCategoryValue(cheese.category()));
+                    recordFound.setName(cheeseDTO.name());
+                    recordFound.setCategory(this.cheeseMapper.convertCategoryValue(cheeseDTO.category()));
                     return cheeseMapper.toDTO(cheeseRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundException(id));
     }
