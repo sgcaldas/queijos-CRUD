@@ -19,6 +19,7 @@ import { Brand } from '../../model/brand';
   styleUrl: './cheese-form.component.scss',
 })
 export class CheeseFormComponent implements OnInit {
+
   form!: FormGroup;
 
   constructor(
@@ -105,7 +106,7 @@ export class CheeseFormComponent implements OnInit {
         (error) => this.onError()
       );
     } else {
-      alert('form invalido');
+      alert('form inválido');
       //this.formUtils.validateAllFormFields(this.form);
     }
   }

@@ -56,6 +56,9 @@
                 <mat-label>URL</mat-label>
                 <span matTextPrefix class="custom-hint">https://youtu.be/</span>
                 <input matInput type="text" placeholder="URL" formControlName="youtubeUrl" />
+                @if (getBrandsFormArray()[i].get('youtubeUrl')?.invalid) {
+                  <mat-error>Campo inválido</mat-error>
+                  }
               </mat-form-field>
             </td>
 
