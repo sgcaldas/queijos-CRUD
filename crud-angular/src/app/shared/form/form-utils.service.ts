@@ -38,14 +38,14 @@ export class FormUtilsService {
       const requiredLength = field.errors
         ? field.errors['minlength']['requiredLength']
         : 4;
-      return `Desconheço queijos com menos de ${requiredLength} letras!`;
+      return `Tamanho mínimo de ${requiredLength} caracteres`;
     }
 
     if (field?.hasError('maxlength')) {
       const requiredLength = field.errors
         ? field.errors['maxlength']['requiredLength']
         : 50;
-      return `São mais de ${requiredLength} letras. Isso é um queijo?`;
+      return `Tamanho máximo de ${requiredLength} caracteres`;
     }
 
     return 'Campo inválido!';

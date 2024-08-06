@@ -6,59 +6,69 @@
       <mat-form-field class="full-width" appearance="outline" color="accent">
         <mat-label>Nome</mat-label>
         <input matInput placeholder="Nome" formControlName="name" #name />
-        <mat-hint align="end" class="custom-hint">{{ name.value.length || 0 }} / 50</mat-hint>
+        <mat-hint align="end"
+          >{{ name.value.length || 0 }} / 50</mat-hint
+        >
         @if (form.get('name')?.invalid) {
-        <mat-error>{{ getErrorMessage("name") }}</mat-error>
+        <mat-error>{{ formUtils.getErrorMessage(form, "name") }}</mat-error>
         }
       </mat-form-field>
 
-      <mat-form-field class="full-width max-height" color="accent" appearance="outline">
+      <mat-form-field
+        class="full-width max-height"
+        color="accent"
+        appearance="outline"
+      >
         <mat-label>Categoria</mat-label>
         <mat-select formControlName="category">
-          <mat-option value="null"></mat-option>
           <mat-option value="Fresco">Fresco</mat-option>
           <mat-option value="Macio">Macio</mat-option>
           <mat-option value="Meia-Cura">Meia-Cura</mat-option>
           <mat-option value="Maturado">Maturado</mat-option>
         </mat-select>
         @if (form.get('category')?.invalid) {
-        <mat-error>{{ getErrorMessage("category") }}</mat-error>
+        <mat-error>{{ formUtils.getErrorMessage(form, "category") }}</mat-error>
         }
       </mat-form-field>
 
       <div>
+
         <mat-toolbar color="accent" class="margin-bottom rounded">
           <span>Marcas</span>
-          <button (click)="addNewLesson()" class="margin-left" mat-icon-button
-            aria-label="Adicionar uma nova marca de queijo">
+          <button mat-icon-button (click)="addNewBrand()" class="margin-left" aria-label="Adicionar uma nova marca de queijo">
             <mat-icon>add</mat-icon>
           </button>
         </mat-toolbar>
 
-        @if (isFormArrayRequired()) {
-        <mat-error class="form-array-error">Adicione pelo menos uma marca!</mat-error>
+        @if (formUtils.isFormArrayRequired(form, 'brands')) {
+        <mat-error class="form-array-error"
+          >Adicione pelo menos uma marca!</mat-error>
         }
 
-        <table style="width:100%" formArrayName="brands" *ngFor="let brand of getBrandsFormArray(); let i = index">
+        <table style="width: 100%" formArrayName="brands"
+          *ngFor="let brand of getBrandsFormArray(); let i = index"
+        >
           <tr [formGroupName]="i">
+
             <td style="width: 50%">
               <mat-form-field class="full-width" color="accent" appearance="outline">
-                <mat-label>Nome da Marca</mat-label>
-                <input matInput formControlName="name" placeholder="Nome da Marca" />
+                <mat-label>Marca</mat-label>
+                <input matInput formControlName="name" placeholder="Nome da Marca"/>
                 @if (getBrandsFormArray()[i].get('name')?.invalid) {
-                <mat-error>{{ getErrorMessage("category") }}</mat-error>
+                  <mat-error>
+                    {{ formUtils.getFormArrayFielErrorMessage(form, 'brands', 'name', i) }}
+                  </mat-error>
                 }
               </mat-form-field>
             </td>
 
-            <td style="width:50%" class="max-width">
+            <td style="width: 50%" class="max-width">
               <mat-form-field class="full-width margin-left" color="accent" appearance="outline">
-                <mat-label>URL</mat-label>
                 <span matTextPrefix class="custom-hint">https://youtu.be/</span>
-                <input matInput type="text" placeholder="URL" formControlName="youtubeUrl" />
+                <input matInput type="text" placeholder="URL" formControlName="youtubeUrl"/>
                 @if (getBrandsFormArray()[i].get('youtubeUrl')?.invalid) {
-                  <mat-error>Campo inválido</mat-error>
-                  }
+                  <mat-error> {{ formUtils.getFormArrayFielErrorMessage(form, 'brands', 'youtubeUrl', i) }} </mat-error>
+                } <!-- @for (brand of getLessonsFormArray(); track brand; let i = $index) -->
               </mat-form-field>
             </td>
 
@@ -69,6 +79,7 @@
             </td>
 
           </tr>
+
         </table>
 
       </div>
@@ -84,54 +95,3 @@
     </button>
   </mat-card-actions>
 </mat-card>
-
-<!-- @if (formUtils.isFormArrayRequired(form, 'lessons')) {
-      <mat-error class="form-array-error"
-        >Adicione pelo menos uma aula.
-      </mat-error>
-      } @for (lesson of getLessonsFormArray(); track lesson; let i = $index) {
-      <table style="width: 100%" formArrayName="lessons">
-        <tr [formGroupName]="i">
-          <td style="width: 65%">
-            <mat-form-field class="full-width">
-              <mat-label>Nome da Aula</mat-label>
-              <input matInput formControlName="name" />
-              @if (getLessonsFormArray()[i].get('name')?.invalid) {
-              <mat-error>{{
-                formUtils.getFormArrayFieldErrorMessage(
-                  form,
-                  "lessons",
-                  "name",
-                  i
-                )
-              }}</mat-error>
-              }
-            </mat-form-field>
-          </td>
-          <td style="width: 30%">
-            <mat-form-field class="full-width">
-              <mat-label>URL</mat-label>
-              <span matPrefix>https://youtu.be/</span>
-              <input matInput formControlName="youtubeUrl" />
-              @if (getLessonsFormArray()[i].get('youtubeUrl')?.invalid) {
-              <mat-error>{{
-                formUtils.getFormArrayFieldErrorMessage(
-                  form,
-                  "lessons",
-                  "youtubeUrl",
-                  i
-                )
-              }}</mat-error>
-              }
-            </mat-form-field>
-          </td>
-          <td>
-            <button mat-icon-button color="warn" (click)="removeLesson(i)">
-              <mat-icon aria-label="Remover a aula">delete</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </table>
-      }
-    </form>
-  </mat-card-content> -->

@@ -1,7 +1,7 @@
-<mat-card>
+<mat-card class="mat-elevation-z8">
   <mat-toolbar color="primary">Queijos Disponíveis</mat-toolbar>
 
-  <div class="column-flex mat-elevation-z8">
+  <div class="column-flex">
 
     <app-cheeses-list
       *ngIf="cheeses$ | async as cheeses; else loading"
