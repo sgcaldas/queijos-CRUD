@@ -21,11 +21,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
-@Data
 @Entity
 
 @SQLDelete(sql = "UPDATE Cheese SET status = 'Inativo' WHERE id = ?")
@@ -54,6 +54,55 @@ public class Cheese {
     @Convert(converter = StatusConverter.class)
     private Status status = Status.ACTIVE;
 
+    @NotNull
+    @NotEmpty
+    @Valid
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cheese")
     private List<Brand> brand = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public List<Brand> getBrand() {
+        return brand;
+    }
+
+    public void setBrand(List<Brand> brand) {
+        this.brand = brand;
+    }
+
+    @Override
+    public String toString() {
+        return "Cheese [id=" + id + ", name=" + name + ", category=" + category + ", status=" + status + ", brand="
+                + brand + "]";
+    }
 }

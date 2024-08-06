@@ -1,0 +1,44 @@
+GET http://localhost:8080/api/cheeses
+
+###
+GET http://localhost:8080/api/cheeses/abc
+
+###
+POST http://localhost:8080/api/cheeses HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Parmesão",
+    "category": "Maurado",
+    "brands": [
+        {
+          "name": "Vida Veg",
+          "youtubeUrl": "vhc4a3QbAcY"
+        },
+        {
+          "name": "Violife",
+          "youtubeUrl": "Hz62-vqiFmo"
+        }
+    ]
+  }
+
+###
+PUT http://localhost:8080/api/cheeses/-1 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Cheddar",
+    "category": "Meia-Cura",
+    "brands": [
+        {
+          "id": 1,
+          "name": "Vida Veg",
+          "youtubeUrl": "vhc4a3QbAcY"
+        },
+        {
+          "id": 2,
+          "name": "Violife",
+          "youtubeUrl": "Hz62-vqiFmo"
+        }
+    ]
+  }
