@@ -2,79 +2,81 @@ mat-card {
   max-width: 85%;
   margin: 2em auto;
   text-align: center;
- }
+}
 
- mat-error {
+mat-error {
   font-size: 0.75em;
- }
+}
 
- mat-form-field {
+mat-form-field {
   margin-bottom: 0.5em;
- }
+}
 
- mat-hint {
+mat-hint {
   font-size: 0.75em;
   margin-right: -8px;
- }
+}
 
- mat-label {
+mat-label {
   margin-left: 2px;
- }
+}
 
- .rounded {
+.rounded {
   border-radius: 3px;
- }
+}
 
- @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   .custom-hint {
     color: #f0f0f0;
   }
-
+  mat-hint {
+    color: #f0f0f0;
+  }
 }
 
- .full-width{
-   width: 100%;
- }
+.full-width {
+  width: 100%;
+}
 
- .min-width {
-   width: 100%;
-   min-width: 150px;
- }
+.min-width {
+  width: 100%;
+  min-width: 150px;
+}
 
- .btn-space {
-   margin-left: 5px;
- }
+.btn-space {
+  margin-left: 5px;
+}
 
- .actions-center {
-   justify-content: center;
- }
+.actions-center {
+  justify-content: center;
+}
 
- .form-array-error {
-   text-align: left;
-   margin-top: -1em;
-   margin-left: 1em;
- }
+.form-array-error {
+  text-align: left;
+  margin-top: -1em;
+  margin-left: 1em;
+}
 
- .margin-top {
+.margin-top {
   margin-top: 1em;
- }
+}
 
- .margin-bottom {
+.margin-bottom {
   margin-bottom: 1em;
- }
+}
 
- .margin-left {
+.margin-left {
   margin-left: 0.2em;
- }
+}
 
- .max-height {
+.max-height {
   max-height: 4.7em;
- }
+}
 
- .max-width {
+.max-width {
   max-width: 150px;
- }
+}
 
- button {
+button {
   padding: 20px;
- }
+}
