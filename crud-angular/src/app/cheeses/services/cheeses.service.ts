@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Cheese } from '../model/cheese';
+import { CheesePage } from '../model/cheese-page';
+
 import { delay, first } from 'rxjs/operators';
 
 @Injectable({
@@ -13,7 +15,7 @@ export class CheesesService {
   constructor(private httpClient: HttpClient) {}
 
   list() {
-    return this.httpClient.get<Cheese[]>(this.API).pipe(first(), delay(1000));
+    return this.httpClient.get<CheesePage>(this.API).pipe(first(), delay(1000));
   }
 
   loadById(id: string) {

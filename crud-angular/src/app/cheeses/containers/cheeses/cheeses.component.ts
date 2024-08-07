@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { CheesePage } from '../../model/cheese-page';
 
 @Component({
   selector: 'app-cheeses',
@@ -15,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './cheeses.component.scss',
 })
 export class CheesesComponent {
-  cheeses$: Observable<Cheese[]> | null = null;
+  cheeses$: Observable<CheesePage> | null = null;
   readonly displayedColumns = ['name', 'category', 'actions'];
 
   constructor(
@@ -32,7 +33,7 @@ export class CheesesComponent {
     this.cheeses$ = this.CheesesService.list().pipe(
       catchError((error) => {
         this.onError('Erro ao carregar queijos.');
-        return of([]);
+        return of( { cheeses: [], totalElements: 0, totalPages: 0 } );
       })
     );
   }

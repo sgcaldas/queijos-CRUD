@@ -5,7 +5,7 @@
 
     <app-cheeses-list
       *ngIf="cheeses$ | async as cheeses; else loading"
-      [cheeses]="cheeses"
+      [cheeses]="cheeses.cheeses"
       (add)="onAdd()"
       (edit)="onEdit($event)"
       (remove)="onRemove($event)"
