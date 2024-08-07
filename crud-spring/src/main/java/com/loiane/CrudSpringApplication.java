@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 
 import com.loiane.enums.Category;
 import com.loiane.model.Brand;
@@ -18,6 +19,7 @@ public class CrudSpringApplication {
     }
 
     @Bean
+    @Profile("dev")
     CommandLineRunner initDatabase(CheeseRepository courseRepository) {
         return args -> {
             courseRepository.deleteAll();
