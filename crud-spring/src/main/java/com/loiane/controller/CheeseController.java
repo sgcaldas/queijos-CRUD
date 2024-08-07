@@ -1,7 +1,5 @@
 package com.loiane.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -11,15 +9,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loiane.dto.CheeseDTO;
+import com.loiane.dto.CheesePageDTO;
 import com.loiane.service.CheeseService;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 
 @Validated
 @RestController
@@ -34,8 +36,9 @@ public class CheeseController {
     }
 
     @GetMapping
-    public List<CheeseDTO> list() {
-        return cheeseService.list();
+    public CheesePageDTO list(@RequestParam(defaultValue = "0") @PositiveOrZero int pageNumber, 
+        @RequestParam(defaultValue = "10") @Positive @Max(100) int pageSize) {
+        return cheeseService.list(pageNumber, pageSize);
     }
 
     @GetMapping("/{id}")

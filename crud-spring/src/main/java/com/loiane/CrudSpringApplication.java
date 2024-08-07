@@ -22,8 +22,10 @@ public class CrudSpringApplication {
         return args -> {
             courseRepository.deleteAll();
 
+            for (int i=0; i<20; i++) {
+
             Cheese c = new Cheese();
-            c.setName("Parmesão");
+            c.setName("Parmesão " + i);
             c.setCategory(Category.MATURADO);
 
             Brand b = new Brand();
@@ -39,6 +41,7 @@ public class CrudSpringApplication {
             c.getBrands().add(b1);
 
             courseRepository.save(c);
+        }
         };
     }
 }
