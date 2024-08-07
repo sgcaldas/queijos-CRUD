@@ -1,11 +1,11 @@
 package com.loiane.dto;
 
 import java.util.List;
-import java.util.Locale.Category;
 
 import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.loiane.enums.Category;
 import com.loiane.enums.validation.ValueOfEnum;
 
 import jakarta.validation.Valid;

@@ -9,7 +9,7 @@ content-type: application/json
 
 {
     "name": "Parmesão",
-    "category": "Maurado",
+    "category": "Maturado",
     "brands": [
         {
           "name": "Vida Veg",
@@ -23,7 +23,7 @@ content-type: application/json
   }
 
 ###
-PUT http://localhost:8080/api/cheeses/-1 HTTP/1.1
+PUT http://localhost:8080/api/cheeses/1 HTTP/1.1
 content-type: application/json
 
 {
@@ -32,13 +32,9 @@ content-type: application/json
     "brands": [
         {
           "id": 1,
-          "name": "Vida Veg",
-          "youtubeUrl": "vhc4a3QbAcY"
-        },
-        {
-          "id": 2,
-          "name": "Violife",
-          "youtubeUrl": "Hz62-vqiFmo"
+          "name": "Superbom",
+          "youtubeUrl": "56789012345"
         }
-    ]
+    ],
+    "_id": 1
   }

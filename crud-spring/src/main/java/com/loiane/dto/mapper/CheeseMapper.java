@@ -19,7 +19,7 @@ public class CheeseMapper {
             return null;
         }
 
-        List<BrandDTO> brands = cheese.getBrand()
+        List<BrandDTO> brands = cheese.getBrands()
                 .stream()
                 .map(brand -> new BrandDTO(brand.getId(), brand.getName(), brand.getYoutubeUrl()))
                 .collect(Collectors.toList());
@@ -46,7 +46,7 @@ public class CheeseMapper {
             brand.setCheese(cheese);
             return brand;
         }).collect(Collectors.toList());
-        cheese.setBrand(brands);
+        cheese.setBrands(brands);
 
         return cheese;
     }
@@ -56,16 +56,11 @@ public class CheeseMapper {
             return null;
         }
         return switch (value) {
-            case "Fresco" ->
-                Category.FRESCO;
-            case "Macio" ->
-                Category.MACIO;
-            case "Meia-Cura" ->
-                Category.MEIA_CURA;
-            case "Maturado" ->
-                Category.MATURADO;
-            default ->
-                throw new IllegalArgumentException("Categoria inválida: " + value);
+            case "Fresco" -> Category.FRESCO;
+            case "Macio" -> Category.MACIO;
+            case "Meia-Cura" -> Category.MEIA_CURA;
+            case "Maturado" -> Category.MATURADO;
+            default -> throw new IllegalArgumentException("Categoria inválida: " + value);
         };
     }
 }

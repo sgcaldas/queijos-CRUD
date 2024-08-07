@@ -50,8 +50,8 @@ public class CheeseService {
                     Cheese cheese = cheeseMapper.toEntity(cheeseDTO);
                     recordFound.setName(cheeseDTO.name());
                     recordFound.setCategory(this.cheeseMapper.convertCategoryValue(cheeseDTO.category()));
-                    recordFound.getBrand().clear();
-                    cheese.getBrand().forEach(brand -> recordFound.getBrand().add(brand));
+                    recordFound.getBrands().clear();
+                    cheese.getBrands().forEach(brand -> recordFound.getBrands().add(brand));
                     return cheeseMapper.toDTO(cheeseRepository.save(recordFound));
                 }).orElseThrow(() -> new RecordNotFoundException(id));
     }

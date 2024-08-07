@@ -1,10 +1,7 @@
 package com.loiane.enums;
 
 public enum Category {
-    FRESCO("Fresco"),
-    MACIO("Macio"),
-    MEIA_CURA("Meia-Cura"), 
-    MATURADO("Maturado");
+    FRESCO("Fresco"), MACIO("Macio"), MEIA_CURA("Meia-Cura"), MATURADO("Maturado");
 
     private String value;
 

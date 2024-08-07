@@ -92,11 +92,11 @@ public class Cheese {
         this.status = status;
     }
 
-    public List<Brand> getBrand() {
+    public List<Brand> getBrands() {
         return brand;
     }
 
-    public void setBrand(List<Brand> brand) {
+    public void setBrands(List<Brand> brand) {
         this.brand = brand;
     }
 
