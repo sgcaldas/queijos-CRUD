@@ -24,21 +24,21 @@ public class CrudSpringApplication {
         return args -> {
             courseRepository.deleteAll();
 
-            for (int i=0; i<20; i++) {
+            for (int i=1; i<20; i++) {
 
             Cheese c = new Cheese();
-            c.setName("Parmesão " + i);
-            c.setCategory(Category.MATURADO);
+            c.setName("Camembert " + i);
+            c.setCategory(Category.MEIA_CURA);
 
             Brand b = new Brand();
             b.setName("Violife");
-            b.setYoutubeUrl("F3hiBJUg2ss");
+            b.setYoutubeUrl("OgrYb50vNlY");
             b.setCheese(c);
             c.getBrands().add(b);
 
             Brand b1 = new Brand();
             b1.setName("Vida Veg");
-            b1.setYoutubeUrl("4jOOvNipBtQ");
+            b1.setYoutubeUrl("vhc4a3QbAcY");
             b1.setCheese(c);
             c.getBrands().add(b1);
 
