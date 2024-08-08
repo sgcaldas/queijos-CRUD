@@ -1,6 +1,6 @@
-# crud-angular-spring
+# crud-angular-spring :seedling:
 
-Basic CRUD vegan cheese API :seedling: generated with: 
+Basic CRUD vegan cheese API generated with: 
 -  [Angular CLI](https://github.com/angular/angular-cli) v17.3.8
 -  [Angular](https://github.com/angular/angular) v17.3.12
 -  [Node](https://nodejs.org/pt) v20.15.1
