@@ -12,3 +12,9 @@ Basic CRUD Vegan-Cheese-API generated with:
 -  [Postgre](https://www.postgresql.org/) v16.3
 
 ![image](https://github.com/user-attachments/assets/f36e36ae-787a-44ab-a960-3375c2716b65)
+
+## To quickstart with VS Code:
+
+1. `git clone` **queijos-CRUD** :octocat:
+2. Run :arrow_forward: **crud-spring** with [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard)
+3. `npm run start` **crud-angular** & follow http://localhost:4200/ :rocket:
