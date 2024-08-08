@@ -45,6 +45,8 @@
           >Adicione pelo menos uma marca!</mat-error>
         }
 
+        <div class = "custom-width">
+
         <table style="width: 100%" formArrayName="brands"
           *ngFor="let brand of getBrandsFormArray(); let i = index"
         >
@@ -81,6 +83,7 @@
           </tr>
 
         </table>
+      </div>
 
       </div>
     </form>

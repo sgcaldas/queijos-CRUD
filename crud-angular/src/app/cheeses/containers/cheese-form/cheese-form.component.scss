@@ -21,10 +21,6 @@ mat-label {
   margin-left: 2px;
 }
 
-.rounded {
-  border-radius: 3px;
-}
-
 @media (prefers-color-scheme: dark) {
   .custom-hint {
     color: #f0f0f0;
@@ -32,6 +28,28 @@ mat-label {
   mat-hint {
     color: #f0f0f0;
   }
+}
+
+@media (max-width: 500px) {
+  table[formArrayName="brands"] tr {
+    display: flex;
+    flex-direction: column;
+  }
+  table[formArrayName="brands"] td {
+    width: 1000%;
+    max-width: 450px;
+  }
+  .custom-width {
+    width: 198%;
+  }
+  table[formArrayName="brands"] td:last-child {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+}
+.rounded {
+  border-radius: 3px;
 }
 
 .full-width {
