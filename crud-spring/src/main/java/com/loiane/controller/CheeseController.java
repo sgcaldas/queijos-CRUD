@@ -36,7 +36,8 @@ public class CheeseController {
     }
 
     @GetMapping
-    public CheesePageDTO list(@RequestParam(defaultValue = "0") @PositiveOrZero int pageNumber, 
+    public CheesePageDTO list(
+        @RequestParam(defaultValue = "0") @PositiveOrZero int pageNumber, 
         @RequestParam(defaultValue = "10") @Positive @Max(100) int pageSize) {
         return cheeseService.list(pageNumber, pageSize);
     }
