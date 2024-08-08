@@ -1,14 +1,15 @@
 import { ConfirmationDialogComponent } from './../../../shared/components/confirmation-dialog/confirmation-dialog.component';
 import { CheesesService } from '../../services/cheeses.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Cheese } from '../../model/cheese';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ErrorDialogComponent } from '../../../shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CheesePage } from '../../model/cheese-page';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-cheeses',
@@ -16,7 +17,14 @@ import { CheesePage } from '../../model/cheese-page';
   styleUrl: './cheeses.component.scss',
 })
 export class CheesesComponent {
+
   cheeses$: Observable<CheesePage> | null = null;
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  pageIndex = 0;
+  pageSize = 10;
+
   readonly displayedColumns = ['name', 'category', 'actions'];
 
   constructor(
@@ -24,16 +32,21 @@ export class CheesesComponent {
     public dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
   ) {
     this.refresh();
   }
 
-  refresh() {
-    this.cheeses$ = this.CheesesService.list().pipe(
+  refresh(pageEvent: PageEvent = {length: 0, pageIndex: 0, pageSize: 10 }) {
+    this.cheeses$ = this.CheesesService.list(pageEvent.pageIndex, pageEvent.pageSize)
+    .pipe(
+      tap(() => {
+        this.pageIndex = pageEvent.pageIndex;
+        this.pageSize = pageEvent.pageSize;
+      }),
       catchError((error) => {
         this.onError('Erro ao carregar queijos.');
-        return of( { cheeses: [], totalElements: 0, totalPages: 0 } );
+        return of({ cheeses: [], totalElements: 0, totalPages: 0 });
       })
     );
   }

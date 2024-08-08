@@ -14,8 +14,9 @@ export class CheesesService {
 
   constructor(private httpClient: HttpClient) {}
 
-  list() {
-    return this.httpClient.get<CheesePage>(this.API).pipe(first(), delay(1000));
+  list(pageNumber = 0, pageSize = 10) {
+    return this.httpClient.get<CheesePage>(this.API, { params: {pageNumber, pageSize} })
+    .pipe(first(), delay(200));
   }
 
   loadById(id: string) {
