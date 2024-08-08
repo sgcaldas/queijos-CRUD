@@ -9,5 +9,6 @@ Basic CRUD Vegan-Cheese-API generated with:
 -  [Spring Boot](https://github.com/spring-projects/spring-boot) v3.3.2
 -  [Spring](https://docs.spring.io/spring-framework/reference/overview.html) v6.1.11
 -  [Maven](https://maven.apache.org/users/index.html) v3.9.8
+-  [Postgre](https://www.postgresql.org/) v16.3
 
 ![image](https://github.com/user-attachments/assets/f36e36ae-787a-44ab-a960-3375c2716b65)
