@@ -1,9 +1,9 @@
-# crud-angular-spring :seedling:
+# queijos-CRUD :seedling:
 
-Basic CRUD vegan cheese API generated with: 
+Basic Vegan Cheese CRUD API generated with: 
 -  [Angular CLI](https://github.com/angular/angular-cli) v17.3.8
 -  [Angular](https://github.com/angular/angular) v17.3.12
--  [Node](https://nodejs.org/pt) v20.15.1
+-  [Node.js](https://nodejs.org/pt) v20.15.1
 -  [npm](https://www.npmjs.com/package/npm/v/10.8.2) v10.8.2
 -  [TypeScript](https://www.typescriptlang.org/) v5.2.2
 -  [Spring Boot](https://github.com/spring-projects/spring-boot) v3.3.2
@@ -13,8 +13,8 @@ Basic CRUD vegan cheese API generated with:
 
 ![image](https://github.com/user-attachments/assets/f36e36ae-787a-44ab-a960-3375c2716b65)
 
-## To quickstart with VS Code:
+## Quickstart with VS Code:
 
 1. `git clone` **queijos-CRUD** :octocat:
-2. Run :arrow_forward: **crud-spring** with [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard)
-3. `npm run start` **crud-angular** & follow http://localhost:4200/ :rocket:
+2. Run :arrow_forward: **crud-spring** using [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard)
+3. `npm run start` **crud-angular** > http://localhost:4200/ :rocket:
